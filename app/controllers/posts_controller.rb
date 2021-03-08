@@ -1,5 +1,10 @@
 class PostsController < ApplicationController
   def index
-    @post = "これはコントローラーで定義したインスタンス変数を確認するための文字列です"
+    @posts = Post.order(id: "DESC")
+  end
+
+  def create
+    post = Post.create(content: params[:content])
+    render json:{ post: post }
   end
 end
